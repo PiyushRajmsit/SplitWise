@@ -9,13 +9,13 @@ import java.util.List;
 
 public abstract class Expense extends DBObject {
 
-    private long totalAmount;
+    private Double totalAmount;
     final private ExpenseType expenseType;
     private User paidBy;
     private User createdBy;
     private List<Split> splitList;
 
-    public Expense(long totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
+    public Expense(Double totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
         this.setTotalAmount(totalAmount);
         this.expenseType = expenseType;
         this.setPaidBy(paidBy);
@@ -23,7 +23,7 @@ public abstract class Expense extends DBObject {
         this.setSplitList(splitList);
     }
 
-    public long getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
@@ -43,7 +43,7 @@ public abstract class Expense extends DBObject {
         return splitList;
     }
 
-    private void setTotalAmount(long totalAmount) {
+    private void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
@@ -65,4 +65,16 @@ public abstract class Expense extends DBObject {
     abstract void validateExpense(List<Split> splitList) throws IllegalSplitException;
     abstract void validateSplit(List<Split> splitList) throws IllegalSplitException;
 //    abstract Expense getExpenseAccount(long totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException;
+
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + getuId() +
+                ", totalAmount=" + totalAmount +
+                ", expenseType=" + expenseType +
+                ", paidBy=" + paidBy +
+                ", createdBy=" + createdBy +
+                '}';
+    }
 }

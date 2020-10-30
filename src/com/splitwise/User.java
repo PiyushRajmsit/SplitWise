@@ -2,6 +2,7 @@ package com.splitwise;
 
 import com.splitwise.expense.Expense;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User extends DBObject{
@@ -12,11 +13,12 @@ public class User extends DBObject{
     private double totalBalance;
     private List<Expense> expenseList;
 
-    public User(String name, String email, String phoneNumber, double totalBalance) {
+    public User(String name, String email, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.totalBalance = totalBalance;
+        this.totalBalance = 0;
+        expenseList = new ArrayList<>();
     }
 
     public String getName() {
@@ -43,5 +45,19 @@ public class User extends DBObject{
         expenseList.add(expense);
     }
 
+    public void addBalance(double balance){
+        this.totalBalance = this.totalBalance + balance;
+    }
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + getuId()+ '\''+
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", totalBalance=" + totalBalance +
+                '}';
+    }
 }

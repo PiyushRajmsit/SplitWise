@@ -7,12 +7,12 @@ public abstract class Split extends DBObject{
 
     final private SplitType splitType;
     private User user;
-    private double share;
+    private double amount;
 
-    public Split(SplitType splitType, User user, double share) {
+    public Split(SplitType splitType, User user, double amount) {
         this.splitType = splitType;
         this.user = user;
-        this.share = share;
+        this.amount = amount;
     }
 
     public SplitType getSplitType() {
@@ -23,9 +23,28 @@ public abstract class Split extends DBObject{
         return user;
     }
 
-    public double getShare() {
-        return share;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
 
+    abstract public double getShare();
+
+    @Override
+    public String toString() {
+        return "Split{" +
+                "id=" + getuId() +
+                ", splitType=" + splitType +
+                ", user=" + user +
+                ", amount=" + amount +
+                '}';
+    }
 }

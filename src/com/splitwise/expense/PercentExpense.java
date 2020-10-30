@@ -6,17 +6,22 @@ import com.splitwise.split.PercentSplit;
 import com.splitwise.split.Split;
 
 import java.util.List;
-import java.util.Map;
 
 public class PercentExpense extends Expense{
 
-    public PercentExpense(long totalAmount, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
+    public PercentExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
         super(totalAmount, ExpenseType.PERCENT, paidBy, createdBy, splitList);
     }
 
     @Override
     void validateExpense(List<Split> splitList) throws IllegalSplitException {
-
+        double totalPercent = 0;
+        for(Split s: splitList){
+            totalPercent = totalPercent + s.getShare();
+        }
+        if(!Utils.isApproxEqual(totalPercent , 100.0)){
+            throw new IllegalSplitException("Incorrect Percentage Split" + totalPercent);
+        }
 
     }
 
@@ -29,12 +34,4 @@ public class PercentExpense extends Expense{
         }
 
     }
-//
-//    @Override
-//    Expense getExpenseAccount(long totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
-//        validateSplit(splitList);
-//        validateExpense(splitList);
-//        PercentExpense percentExpense = new PercentExpense(totalAmount, paidBy, createdBy, splitList);
-//        return percentExpense;
-//    }
 }

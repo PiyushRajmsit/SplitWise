@@ -1,19 +1,24 @@
 package com.splitwise.split;
 
 import com.splitwise.User;
+import com.splitwise.expense.Utils;
 
 public class PercentSplit extends Split {
 
-    private double amount;
-    public PercentSplit(User user, double share) {
-        super(SplitType.PERCENT, user, share);
+
+    private double percent;
+
+    public PercentSplit(SplitType splitType, User user, double amount, double percent) {
+        super(SplitType.PERCENT, user, amount);
+        this.percent = percent;
     }
 
-    public double getAmount() {
-        return amount;
+    @Override
+    public double getShare() {
+        return getPercent();
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public double getPercent() {
+        return percent;
     }
 }
