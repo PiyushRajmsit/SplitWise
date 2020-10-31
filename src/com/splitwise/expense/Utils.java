@@ -1,7 +1,7 @@
 package com.splitwise.expense;
 
 
-
+import com.splitwise.exception.IllegalExpenseType;
 
 public class Utils {
 
@@ -16,5 +16,15 @@ public class Utils {
 
     public static boolean isApproxEqual(double v1, double v2) {
         return (Math.abs(v1 - v2) / (Math.min(Math.abs(v1), Math.abs(v2)))) < 1e-10; // relative error
+    }
+
+    public static ExpenseType expenseTypeFromString(String expType) throws IllegalExpenseType {
+        if(expType.equals("Equal")){
+            return ExpenseType.EQUAL;
+        }
+        else if(expType.equals("Exact")){
+            return ExpenseType.EXACT;
+        }
+        return ExpenseType.PERCENT;
     }
 }

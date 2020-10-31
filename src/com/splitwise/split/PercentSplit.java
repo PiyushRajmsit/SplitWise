@@ -8,7 +8,7 @@ public class PercentSplit extends Split {
 
     private double percent;
 
-    public PercentSplit(SplitType splitType, User user, double amount, double percent) {
+    public PercentSplit(User user, double amount, double percent) {
         super(SplitType.PERCENT, user, amount);
         this.percent = percent;
     }

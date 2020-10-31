@@ -23,6 +23,7 @@ public class BookKeeper {
 
     public void addUser(User user){
         usersList.put(user.getuId(),user);
+        System.out.println("New User has been Successfully Added ->" + user.toString());
     }
     public User getUser(Long id) throws IllegalUserId {
         if(usersList.containsKey(id)) {
@@ -31,9 +32,19 @@ public class BookKeeper {
         return usersList.get(id);
     }
 
+    public void printAllUsers(){
+        System.out.println("Displaying All User with Non-Zero Balance");
+        for(Map.Entry<Long,User> users : usersList.entrySet()){
+            if(users.getValue().getTotalBalance() > 0 ){
+                System.out.println(users.getValue().toString());
+            }
+        }
+    }
 
-
-
-
-
+    public void displayUserData(Long userId) throws IllegalUserId{
+        if(!usersList.containsKey(userId)){
+            throw new IllegalUserId("Users Doesnt Exist");
+        }
+        System.out.println(usersList.get(userId).toString());
+    }
 }
