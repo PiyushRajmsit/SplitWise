@@ -4,7 +4,7 @@ import com.splitwise.BookKeeper;
 import com.splitwise.exception.BadCommandException;
 import com.splitwise.exception.IllegalUserId;
 
-public class ShowUserInfoCommand implements Command {
+public class ShowUserInfoCommand implements ICommand {
 
 
     private static ShowUserInfoCommand showUserInfoCommandInstance;

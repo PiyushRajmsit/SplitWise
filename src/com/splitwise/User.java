@@ -1,6 +1,7 @@
 package com.splitwise;
 
 import com.splitwise.expense.Expense;
+import com.splitwise.expense.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class User extends DBObject{
     }
 
     public void addBalance(double balance){
-        this.totalBalance = this.totalBalance + balance;
+        this.totalBalance = Utils.roundOff(this.totalBalance + balance);
     }
 
 
@@ -59,5 +60,9 @@ public class User extends DBObject{
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", totalBalance=" + totalBalance +
                 '}';
+    }
+
+    public String showUserExpense(){
+        return expenseList.toString();
     }
 }

@@ -10,8 +10,8 @@ import java.util.List;
 public class ExactExpense extends Expense {
 
 
-    public ExactExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
-        super(totalAmount, ExpenseType.EXACT, paidBy, createdBy, splitList);
+    public ExactExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList, String expenseName) throws IllegalSplitException {
+        super(totalAmount, ExpenseType.EXACT, paidBy, createdBy, splitList, expenseName);
     }
     @Override
     void validateExpense(List<Split> splitList) throws IllegalSplitException {
@@ -22,7 +22,7 @@ public class ExactExpense extends Expense {
             currentAmount += s.getShare();
         }
         if(!Utils.isApproxEqual(currentAmount,totalAmount)){
-            throw  new IllegalSplitException("Incorrect Amount for Exact Split" + currentAmount);
+            throw  new IllegalSplitException("Incorrect Amount for Exact Split ->" + currentAmount);
         }
     }
 
@@ -34,12 +34,4 @@ public class ExactExpense extends Expense {
             }
         }
     }
-
-//    @Override
-//    Expense getExpenseAccount(long totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
-//        validateSplit(splitList);
-//        validateExpense(totalAmount,splitList);
-//        ExactExpense exactExpense = new ExactExpense(totalAmount, paidBy, createdBy, splitList);
-//        return exactExpense;
-//    }
 }

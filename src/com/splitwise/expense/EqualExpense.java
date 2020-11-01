@@ -9,8 +9,8 @@ import java.util.List;
 
 public class EqualExpense extends Expense{
 
-    public EqualExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
-        super(totalAmount, ExpenseType.EQUAL, paidBy, createdBy, splitList);
+    public EqualExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList, String expenseName) throws IllegalSplitException {
+        super(totalAmount, ExpenseType.EQUAL, paidBy, createdBy, splitList, expenseName);
     }
 
 
@@ -25,7 +25,11 @@ public class EqualExpense extends Expense{
         }
         if(!Utils.isApproxEqual(currentAmount,totalAmount)){
             double remaining = totalAmount - currentAmount;
-            splitList.get(0).setAmount(splitList.get(0).getAmount() + remaining);
+            for(Split s: splitList){
+                if(s.getUser().getuId() == this.getPaidBy().getuId()){
+                    s.setAmount(Utils.roundOff(s.getAmount()+remaining));
+                }
+            }
         }
     }
 
@@ -37,17 +41,5 @@ public class EqualExpense extends Expense{
             }
         }
     }
-
-//    @Override
-//    Expense getExpenseAccount(long totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
-//
-//        validateSplit(splitList);
-//        validateExpense(splitList);
-//        EqualExpense e = new EqualExpense(totalAmount, paidBy, createdBy, splitList);
-//        return e;
-//    }
-
-
-
 
 }

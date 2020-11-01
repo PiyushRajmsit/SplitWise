@@ -15,7 +15,7 @@ import com.splitwise.split.Split;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddExpenseCommand implements Command {
+public class AddExpenseCommand implements ICommand {
 
 
     private static AddExpenseCommand addExpenseCommandInstance;
@@ -33,7 +33,7 @@ public class AddExpenseCommand implements Command {
 
     @Override
     public void executeCommand(String[] cmd) throws BadCommandException, IllegalUserId, IllegalExpenseType, IllegalSplitException {
-        String expType = cmd[1];
+        String expenseName = cmd[1];
         Double totalAmount = Double.valueOf(cmd[2]);
         User paidBy = bookKeeper.getUser(Long.valueOf(cmd[3]));
         User createdBy = bookKeeper.getUser(Long.valueOf(cmd[4]));
@@ -48,12 +48,10 @@ public class AddExpenseCommand implements Command {
                 User user = bookKeeper.getUser(userId);
                 splitList.add(new EqualSplit(user,getEachShare));
             }
-            Expense newExpenseCreated = new EqualExpense(totalAmount,paidBy,createdBy,splitList);
-            for(int userCount = 0;userCount < totalUsers ; userCount++){
-                Long userId = Long.valueOf(cmd[7+userCount]);
-                User user = bookKeeper.getUser(userId);
-                user.addExpense(newExpenseCreated);
-                user.addBalance(getEachShare);
+            Expense newExpenseCreated = new EqualExpense(totalAmount,paidBy,createdBy,splitList, expenseName);
+            for(Split s: newExpenseCreated.getSplitList()){
+                s.getUser().addBalance(s.getAmount());
+                s.getUser().addExpense(newExpenseCreated);
             }
 
         }
@@ -64,11 +62,10 @@ public class AddExpenseCommand implements Command {
                 Double getUserShare = Double.valueOf(cmd[Math.toIntExact(7 + totalUsers + userCount)]);
                 splitList.add(new ExactSplit(user,getUserShare));
             }
-            Expense newExpenseCreated = new ExactExpense(totalAmount,paidBy,createdBy,splitList);
-            for(int userCount = 0;userCount < totalUsers ; userCount++){
-                Long userId = Long.valueOf(cmd[7+userCount]);
-                User user = bookKeeper.getUser(userId);
-                user.addBalance(splitList.get(userCount).getAmount());
+            Expense newExpenseCreated = new ExactExpense(totalAmount,paidBy,createdBy,splitList, expenseName);
+            for(Split s: newExpenseCreated.getSplitList()){
+                s.getUser().addBalance(s.getAmount());
+                s.getUser().addExpense(newExpenseCreated);
             }
         }
         else if(expenseType == ExpenseType.PERCENT){
@@ -79,13 +76,11 @@ public class AddExpenseCommand implements Command {
                 Double userShare = Utils.getAmountFromPercent(totalAmount,getPercent);
                 splitList.add(new PercentSplit(user,userShare,getPercent));
             }
-            Expense newExpenseCreated = new PercentExpense(totalAmount,paidBy,createdBy,splitList);
-            for(int userCount = 0;userCount < totalUsers ; userCount++){
-                Long userId = Long.valueOf(cmd[7+userCount]);
-                User user = bookKeeper.getUser(userId);
-                user.addBalance(splitList.get(userCount).getAmount());
+            Expense newExpenseCreated = new PercentExpense(totalAmount,paidBy,createdBy,splitList, expenseName);
+            for(Split s: newExpenseCreated.getSplitList()){
+                s.getUser().addBalance(s.getAmount());
+                s.getUser().addExpense(newExpenseCreated);
             }
-
         }
         System.out.println("Expense Successfully Added");
 

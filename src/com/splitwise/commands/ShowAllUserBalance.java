@@ -3,7 +3,7 @@ package com.splitwise.commands;
 import com.splitwise.BookKeeper;
 import com.splitwise.exception.BadCommandException;
 
-public class ShowAllUserBalance implements Command {
+public class ShowAllUserBalance implements ICommand {
     private static ShowAllUserBalance showAllUserBalanceInstance;
     BookKeeper bookKeeper;
     private ShowAllUserBalance() {

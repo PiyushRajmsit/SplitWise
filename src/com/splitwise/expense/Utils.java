@@ -19,10 +19,10 @@ public class Utils {
     }
 
     public static ExpenseType expenseTypeFromString(String expType) throws IllegalExpenseType {
-        if(expType.equals("Equal")){
+        if(expType.toLowerCase().equals("equal")){
             return ExpenseType.EQUAL;
         }
-        else if(expType.equals("Exact")){
+        else if(expType.toLowerCase().equals("exact")){
             return ExpenseType.EXACT;
         }
         return ExpenseType.PERCENT;

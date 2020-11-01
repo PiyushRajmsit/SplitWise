@@ -9,8 +9,8 @@ import java.util.List;
 
 public class PercentExpense extends Expense{
 
-    public PercentExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
-        super(totalAmount, ExpenseType.PERCENT, paidBy, createdBy, splitList);
+    public PercentExpense(Double totalAmount, User paidBy, User createdBy, List<Split> splitList, String expenseName) throws IllegalSplitException {
+        super(totalAmount, ExpenseType.PERCENT, paidBy, createdBy, splitList, expenseName);
     }
 
     @Override

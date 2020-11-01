@@ -2,7 +2,9 @@ package com.splitwise;
 
 import com.splitwise.commands.CommandFactory;
 import com.splitwise.exception.BadCommandException;
+import com.splitwise.exception.IllegalExpenseType;
 import com.splitwise.exception.IllegalSplitException;
+import com.splitwise.exception.IllegalUserId;
 import com.splitwise.expense.EqualExpense;
 import com.splitwise.expense.ExactExpense;
 import com.splitwise.expense.Expense;
@@ -16,7 +18,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IllegalSplitException {
+    public static void main(String[] args) throws IllegalSplitException, IllegalUserId, IllegalExpenseType {
 	// write your code here
 
 
@@ -45,38 +47,16 @@ public class Main {
             }
         }
 
-//        List<Split> s = new ArrayList<>();
-//        s.add( new EqualSplit(u1,50));
-//        s.add( new EqualSplit(u2,50));
-//        Expense e = new EqualExpense(100.0,u1,u2,s);
-//        System.out.println(e.toString());
-//        u1.addExpense(e);
-//        u1.addBalance(50.0);
-//        u2.addExpense(e);
-//        u2.addBalance(50.0);
-//        System.out.println(u1.toString());
-//        System.out.println(u2.toString());
-//
-//        List<Split> s1 = new ArrayList<>();
-//
-//        s1.add(new ExactSplit(u1,99.98));
-//        s1.add(new ExactSplit(u2,10.01));
-//        s1.add(new ExactSplit(u3,90.01));
-//        Expense e2 = new ExactExpense(200.0,u2,u2,s1);
-//        u1.addBalance(100);
-//        u1.addExpense(e2);
-//        u2.addBalance(10);
-//        u2.addExpense(e2);
-//        u3.addExpense(e2);
-//        u3.addBalance(90);
-//
-//        System.out.println(u1.toString());
-//        System.out.println(u2.toString());
     }
 
-
-
-
-
-
 }
+// Command Test
+
+// Add_User goofie goofie@goofie.com 444
+// Add_Expense Food 200 1 1 3 Equal 1 2 3
+// Show_All_User_Balance
+// Show_User_Data 2
+// Show_User_Expense 1
+// Add_Expense Cable 100 1 1 3 Exact 1 2 3 40 50 10
+// Add_Expense Travel 100 1 1 3 Exact 1 2 3 40 20 10
+// Add_Expense Hotels 400 4 4 3 Percent 2 3 4 30 50 20

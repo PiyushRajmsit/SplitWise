@@ -43,7 +43,7 @@ public abstract class Split extends DBObject{
         return "Split{" +
                 "id=" + getuId() +
                 ", splitType=" + splitType +
-                ", user=" + user +
+                ", user=" + user.getName() +
                 ", amount=" + amount +
                 '}';
     }

@@ -5,7 +5,6 @@ import com.splitwise.exception.IllegalExpenseType;
 import com.splitwise.exception.IllegalSplitException;
 import com.splitwise.exception.IllegalUserId;
 
-public interface Command {
-
+public interface ICommand {
     public void executeCommand(String cmd[]) throws BadCommandException, IllegalUserId, IllegalExpenseType, IllegalSplitException;
 }

@@ -26,7 +26,7 @@ public class BookKeeper {
         System.out.println("New User has been Successfully Added ->" + user.toString());
     }
     public User getUser(Long id) throws IllegalUserId {
-        if(usersList.containsKey(id)) {
+        if(!usersList.containsKey(id)) {
             throw new IllegalUserId("Incorrect User Id");
         }
         return usersList.get(id);

@@ -14,13 +14,19 @@ public abstract class Expense extends DBObject {
     private User paidBy;
     private User createdBy;
     private List<Split> splitList;
+    private String expenseName;
 
-    public Expense(Double totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException {
+    public Expense(Double totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList, String expenseName) throws IllegalSplitException {
+        this.expenseName = expenseName;
         this.setTotalAmount(totalAmount);
         this.expenseType = expenseType;
         this.setPaidBy(paidBy);
         this.setCreatedBy(createdBy);
         this.setSplitList(splitList);
+    }
+
+    public String getExpenseName() {
+        return expenseName;
     }
 
     public Double getTotalAmount() {
@@ -64,17 +70,16 @@ public abstract class Expense extends DBObject {
 
     abstract void validateExpense(List<Split> splitList) throws IllegalSplitException;
     abstract void validateSplit(List<Split> splitList) throws IllegalSplitException;
-//    abstract Expense getExpenseAccount(long totalAmount, ExpenseType expenseType, User paidBy, User createdBy, List<Split> splitList) throws IllegalSplitException;
-
 
     @Override
     public String toString() {
         return "Expense{" +
-                "id=" + getuId() +
-                ", totalAmount=" + totalAmount +
+                "totalAmount=" + totalAmount +
                 ", expenseType=" + expenseType +
-                ", paidBy=" + paidBy +
-                ", createdBy=" + createdBy +
+                ", paidBy=" + paidBy.getName() +
+                ", createdBy=" + createdBy.getName() +
+                ", splitList=" + splitList +
+                ", expenseName='" + expenseName + '\'' +
                 '}';
     }
 }

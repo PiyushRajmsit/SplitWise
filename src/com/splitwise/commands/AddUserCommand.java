@@ -4,7 +4,7 @@ import com.splitwise.BookKeeper;
 import com.splitwise.User;
 import com.splitwise.exception.BadCommandException;
 
-public class AddUserCommand implements Command {
+public class AddUserCommand implements ICommand {
 
 
     private static AddUserCommand addUserCommandInstance;
