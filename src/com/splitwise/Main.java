@@ -5,15 +5,6 @@ import com.splitwise.exception.BadCommandException;
 import com.splitwise.exception.IllegalExpenseType;
 import com.splitwise.exception.IllegalSplitException;
 import com.splitwise.exception.IllegalUserId;
-import com.splitwise.expense.EqualExpense;
-import com.splitwise.expense.ExactExpense;
-import com.splitwise.expense.Expense;
-import com.splitwise.split.EqualSplit;
-import com.splitwise.split.ExactSplit;
-import com.splitwise.split.Split;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +25,6 @@ public class Main {
         System.out.println(u1.toString());
         System.out.println(u2.toString());
         System.out.println(u3.toString());
-
 
         Scanner sc = new Scanner(System.in);
         while(true) {

@@ -10,7 +10,7 @@ The app keeps balances between people as in who owes how much to whom.
 
 * User: Each user should have a userId, name, email, mobile number.
 
-* Expense: Could either be EQUAL, EXACT or PERCENT
+* Expense: Could either be ***EQUAL***, ***EXACT*** or ***PERCENT***
 
 * Users can add any amount, select any type of expense and split with any of the available users.
 
@@ -28,26 +28,32 @@ The app keeps balances between people as in who owes how much to whom.
 
 
 ### Queries
-1) Add User: 
-* (Input Format): Add_User [Name] [Email] [PhoneNumber]
+* Add User: 
+> ***(Input Format)***: Add_User [Name] [Email] [PhoneNumber]
 
-2) Add Equal Expense to User Account:
-*  (Input Format) : Add_Expense [ExpenseName] [totalAmount] [paidBy UserId] [createdBy UserId] [totalUsers] Equal [User 1 Id] [User 2 Id] ........[User totalUsers Id]
 
-3) Add Exact Expense to User Account:
-*  (Input Format) : Add_Expense [ExpenseName] [totalAmount] [paidBy UserId] [createdBy UserId] [totalUsers] Exact [User 1 Id] [User 2 Id] ........[User totalUsers Id] [Amount Paid by User 1] [Amount Paid by User 2] ......
+* Add Equal Expense to User Account:
+>  ***(Input Format)*** : Add_Expense [ExpenseName] [totalAmount] [paidBy UserId] [createdBy UserId] [totalUsers] Equal [User 1 Id] [User 2 Id] ........[User totalUsers Id]
 
-4) Add Percent Expense to User Account:
-* (Input Format) : Add_Expense [ExpenseName] [totalAmount] [paidBy UserId] [createdBy UserId] [totalUsers] Percent [User 1 Id] [User 2 Id] ........[User totalUsers Id] [Percent Share by User 1] [Percent Share by User 2] ..... 
 
-5) Show User Data:
-* (Input Format) : Show_User_Data [UserId]
+* Add Exact Expense to User Account:
+>  ***(Input Format)*** : Add_Expense [ExpenseName] [totalAmount] [paidBy UserId] [createdBy UserId] [totalUsers] Exact [User 1 Id] [User 2 Id] ........[User totalUsers Id] [Amount Paid by User 1] [Amount Paid by User 2] ......
 
-6) Show All User Data with Positive Due Balance:
-* (Input Format) : Show_All_User_Balance
 
-7) Show_User_Expense By A User
-* (Input Format) : Show_User_Expense [UserId]
+* Add Percent Expense to User Account:
+> ***(Input Format)*** : Add_Expense [ExpenseName] [totalAmount] [paidBy UserId] [createdBy UserId] [totalUsers] Percent [User 1 Id] [User 2 Id] ........[User totalUsers Id] [Percent Share by User 1] [Percent Share by User 2] ..... 
+
+
+* Show User Data:
+> ***(Input Format)*** : Show_User_Data [UserId]
+
+
+* Show All User Data with Positive Due Balance:
+> ***(Input Format)*** : Show_All_User_Balance
+
+
+* Show_User_Expense By A User
+> ***(Input Format)***: Show_User_Expense [UserId]
 
 
 ### Sample Test Case

@@ -1,7 +1,5 @@
 package com.splitwise.split;
-
 import com.splitwise.User;
-import com.splitwise.expense.Utils;
 
 public class PercentSplit extends Split {
 
